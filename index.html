@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>blackjack-codeworks-app</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css">
+        <script src="script.js" defer></script>
+        
+    </head>
+    <body>
+        <main>
+            <div class="instructions">
+                <h3>How to play</h3>
+                <ol>
+                    <li>Each player is dealt two cards</li>
+                    <li>You can choose to take another card or to stop where they are</li>
+                    <li>If the you have two of the same card then you can split them into two hands</li>
+                    <li>Your goal is to get a higher combined value than the computer</li>
+                    <li>Aces are worth 1 or 11 depending on what is needed</li>
+                    <li>All picture cards are worth 10</li>
+                </ol>
+                <button onclick="startGame()">start game</button>
+            </div>
+            <div class="options">
+                <button class="help" onclick="help()">help</button>
+                <div class="action">
+                    <button onclick="hit()">Hit</button>
+                    <p>Take a card</p>
+                </div>
+                <div class="action">
+                    <button onclick="stand()">Stand</button>
+                    <p>Stay where you are and end the game</p>
+                </div>
+                <div class="action">
+                    <button>Split</button>
+                    <p>Split your hand into two hands</p>
+                </div>
+                <div class="action">
+                    <button onclick="resetGame()">Reset</button>
+                    <p>Reset the game</p>
+                </div>
+            </div>
+            <div class="gameplay-area">
+                <div class="table">
+                    <div class="hand" id="computerHand"></div>
+                    <div class="deck" ></div>
+                    <div class="hand" id="playerHand">
+                    </div>
+                </div>
+                <div class="message-board">
+                    <h1 id="message">THIS IS WHERE MESSAGES SHOW UP</h1>
+                </div>
+            </div>
+        </main>
+        <script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"></script>
+    </body>
+</html>
