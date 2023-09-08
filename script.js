@@ -436,8 +436,8 @@ function computerTurn(){
     }
 }
 
-//TODO create a wincheck or blackjack function 
-//TODO need to rewirte the code for the displayment of cards
+// TODO: create a wincheck or blackjack function 
+// TODO: need to rewirte the code for the displayment of cards
 
 
 // These link to buttons and run the game
