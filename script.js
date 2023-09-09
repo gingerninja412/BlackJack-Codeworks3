@@ -1,5 +1,7 @@
 let userHand = []
 let computerHand = []
+let computerStand = false
+let gameOver = false
 const deckOfCards = [
     {
         name: "ace of spades",
@@ -388,6 +390,11 @@ function resetGame(){
     computerHand = []
     computerArea.empty()
     playerHand.empty()
+    gameOver = false
+    for(let i = 0; i < 2; i++){
+        dealCard(computerHand)
+        dealCard(userHand)
+    }
 }
 
 function calculateTotal(hand) {
@@ -432,12 +439,24 @@ function displayMessage(message){
     messageArea.append(newMessage)
 }
 
-function CheckForBlackjack(hand){
-    if(calculateTotal(hand) == 21){
-        removeActions()
+function CheckForBlackjack(){
+    let userTotal = calculateTotal(userHand)
+    let computerTotal = calculateTotal(computerHand)
+    if(userTotal == 21){
+        displayMessage("You won with a blackjack")
+        gameOver = true
         return true
-    } else if(calculateTotal(hand) > 21){
-        removeActions()
+    } else if(userTotal > 21){
+        displayMessage("You went bust")
+        gameOver = true
+        return true
+    } else if(computerTotal == 21){
+        displayMessage("The computer got a blackjack")
+        gameOver = true
+        return true
+    } else if(computerTotal > 21){
+        displayMessage("you won, the computer went bust")
+        gameOver = true
         return true
     }
     return false
@@ -459,6 +478,10 @@ function computerTurn(){
         computerStand = true
     } else{
         dealCard(computerHand)
+        if(CheckForBlackjack() == true){
+            removeActions()
+            return
+        }
     }
 }
 
@@ -475,7 +498,41 @@ function startGame(){
         dealCard(userHand)
         dealCard(computerHand)
     }
-    
+    if(CheckForBlackjack() == true){
+        removeActions()
+        displayMessage("press reset or help to play again")
+    }
+}
+
+function hit(){
+    dealCard(userHand)
+    displayMessage("you have been dealt a card")
+    computerTurn()
+    if(CheckForBlackjack() == true){
+        removeActions()
+        displayMessage("press reset or help to play again")
+        return
+    }
+}
+
+function stand(){
+    displayMessage("you have chosen to stand")
+    while(computerStand == false){
+        computerTurn()
+    }
+    if(gameOver == false){
+        let userTotal = calculateTotal(userHand)
+        let computerTotal = calculateTotal(computerHand)
+        if(computerTotal >= userTotal){
+            removeActions()
+            displayMessage("you lost, the computer got more than you")
+            gameOver = true
+        }
+        if(userTotal > computerTotal){
+            removeActions()
+            displayMessage("you won, you got more than the computer")
+        }
+    }
 }
 
 function help(){
