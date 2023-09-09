@@ -373,6 +373,7 @@ const actions = $(".action");
 const computerArea = $("#computerHand");
 const playerHand = $("#playerHand");
 const messageArea = $("#message");
+const resetButton = $("#Reset")
 
 //processing functions; not tied to a button or dependant on any other functions
 function resetGame(){
@@ -417,6 +418,31 @@ function calculateTotal(hand) {
     return total
 }
 
+function removeActions(){
+    actions.css("display", "none")
+    resetButton.css("display", "flex")
+}
+
+function displayMessage(message){
+    newMessage = $("<p>") 
+    if(messageArea.children().length() >= 5){
+        messageArea.first().remove()
+    }
+    newMessage.text(message)
+    messageArea.append(newMessage)
+}
+
+function CheckForBlackjack(hand){
+    if(calculateTotal(hand) == 21){
+        removeActions()
+        return true
+    } else if(calculateTotal(hand) > 21){
+        removeActions()
+        return true
+    }
+    return false
+}
+
 //dependant processing functions
 function dealCard (player){
     let index = Math.floor((Math.random() * 52))
@@ -436,7 +462,7 @@ function computerTurn(){
     }
 }
 
-// TODO: create a wincheck or blackjack function 
+// TODO: create a wincheck function 
 // TODO: need to rewirte the code for the displayment of cards
 
 
