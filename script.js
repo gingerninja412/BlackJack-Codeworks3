@@ -374,26 +374,86 @@ const instructions = $(".instructions");
 const actions = $(".action");
 const computerArea = $("#computerHand");
 const playerHand = $("#playerHand");
-const messageArea = $("#message");
+const messageArea = $(".message-board");
 const resetButton = $("#Reset")
 
-//processing functions; not tied to a button or dependant on any other functions
+
+//processing functions
+
+function showComputerCards() {
+    computerArea.empty()
+    computerHand.forEach( item => {
+        let newCard = $("<img>")
+        newCard.attr("src", item.image)
+        newCard.addClass("card")
+        computerArea.append(newCard)
+    })
+}
+
 function resetGame(){
     userHand.forEach(item => {
         deckOfCards[item.index].picked = false
     })
-    computerHand.forEach( item => {
+    computerHand.forEach(item =>{
         deckOfCards[item.index].picked = false
-        
     })
     userHand = []
     computerHand = []
+    messageArea.empty()
     computerArea.empty()
     playerHand.empty()
     gameOver = false
+    computerStand = false
+    actions.css("display", "flex")
     for(let i = 0; i < 2; i++){
-        dealCard(computerHand)
         dealCard(userHand)
+        dealCard(computerHand)
+    }
+    checkForBlackjack()
+    if(gameOver == false){
+        showMessage("you have been dealt two cards choose an option on the left")
+    }
+}
+
+function removePlayButtons(){
+    actions.css("display", "none")
+    resetButton.css("display", "flex")
+}
+
+function showMessage(message){
+    let newMessage = $("<p></p>")
+    if(messageArea.children() > 5){
+        messageArea.first().remove()
+    }
+    newMessage.text(message)
+    messageArea.append(newMessage)
+}
+
+function displayPlayerCard(card){
+    let newCard = $("<img>")
+    newCard.attr("src", card.image)
+    newCard.addClass("card")
+    playerHand.append(newCard)
+}
+
+function displayComputerHand(){
+    let newCard = $("<img>")
+    newCard.attr("src", String.raw`images\playing_card_back.png`)
+    newCard.addClass("card")
+    computerArea.append(newCard)
+}
+
+function dealCard (player){
+    let card = Math.floor((Math.random() * 52))
+    while (deckOfCards[card].picked == true){
+        card = Math.floor((Math.random() * 52))
+    }
+    player.push(deckOfCards[card])
+    deckOfCards[card].picked = true
+    if(player == userHand){
+        displayPlayerCard(deckOfCards[card])
+    } else if(player == computerHand){
+        displayComputerHand()
     }
 }
 
@@ -425,71 +485,56 @@ function calculateTotal(hand) {
     return total
 }
 
-function removeActions(){
-    actions.css("display", "none")
-    resetButton.css("display", "flex")
-}
 
-function displayMessage(message){
-    newMessage = $("<p>") 
-    if(messageArea.children().length() >= 5){
-        messageArea.first().remove()
-    }
-    newMessage.text(message)
-    messageArea.append(newMessage)
-}
-
-function CheckForBlackjack(){
+function checkForBlackjack(){
     let userTotal = calculateTotal(userHand)
     let computerTotal = calculateTotal(computerHand)
     if(userTotal == 21){
-        displayMessage("You won with a blackjack")
         gameOver = true
-        return true
+        showMessage("You won with a blackjack")
+        removePlayButtons()
+        showMessage("press reset to play again")
+        showComputerCards()
     } else if(userTotal > 21){
-        displayMessage("You went bust")
         gameOver = true
-        return true
+        showMessage("you went bust")
+        removePlayButtons()
+        showMessage("press reset to play again")
+        showComputerCards()
     } else if(computerTotal == 21){
-        displayMessage("The computer got a blackjack")
         gameOver = true
-        return true
+        showMessage("The computer won with a blackjack")
+        removePlayButtons()
+        showMessage("press reset to play again")
+        showComputerCards()
     } else if(computerTotal > 21){
-        displayMessage("you won, the computer went bust")
+        showMessage("the computer went bust, you win")
+        removePlayButtons()
         gameOver = true
-        return true
+        showMessage("press reset to play again")
+        showComputerCards()
     }
-    return false
-}
-
-//dependant processing functions
-function dealCard (player){
-    let index = Math.floor((Math.random() * 52))
-    while (deckOfCards[index].picked == true){
-        index = Math.floor((Math.random() * 52))
-    }
-    player.push(deckOfCards[index])
-    deckOfCards[index].picked = true
 }
 
 function computerTurn(){
-    let value = calculateTotal(computerHand)
-    if(value >= 16){
-        computerStand = true
-    } else{
-        dealCard(computerHand)
-        if(CheckForBlackjack() == true){
-            removeActions()
-            return
+    if(computerStand == false){
+        if(calculateTotal(computerHand) < 16){
+            dealCard(computerHand)
+            showMessage("the computer hit")
+        } else{
+            computerStand = true
+            showMessage("the computer is standing")
         }
     }
 }
 
-// TODO: create a wincheck function 
-// TODO: need to rewirte the code for the displayment of cards
+//functions tied to buttons
+function help(){
+    instructions.removeClass("instructionsUp")
+    instructions.addClass("instructionsDown")
+    actions.css("display", "none")
+}
 
-
-// These link to buttons and run the game
 function startGame(){
     instructions.removeClass("instructionsDown")
     instructions.addClass("instructionsUp")
@@ -498,53 +543,41 @@ function startGame(){
         dealCard(userHand)
         dealCard(computerHand)
     }
-    if(CheckForBlackjack() == true){
-        removeActions()
-        displayMessage("press reset or help to play again")
+    checkForBlackjack()
+    if(gameOver == false){
+        showMessage("you have been dealt two cards choose an option on the left")
     }
 }
 
 function hit(){
     dealCard(userHand)
-    displayMessage("you have been dealt a card")
     computerTurn()
-    if(CheckForBlackjack() == true){
-        removeActions()
-        displayMessage("press reset or help to play again")
-        return
-    }
+    checkForBlackjack()
 }
 
 function stand(){
-    displayMessage("you have chosen to stand")
-    while(computerStand == false){
+    while(computerStand == false && gameOver == false){
         computerTurn()
+        checkForBlackjack()
     }
     if(gameOver == false){
-        let userTotal = calculateTotal(userHand)
         let computerTotal = calculateTotal(computerHand)
-        if(computerTotal >= userTotal){
-            removeActions()
-            displayMessage("you lost, the computer got more than you")
-            gameOver = true
+        let userTotal = calculateTotal(userHand)
+        removePlayButtons()
+        if(computerTotal > userTotal){
+            showMessage("you lost, the computer got a better hand")
+        } else if(userTotal > computerTotal){
+            showMessage("you won, your hand was better than the computer")
+        } else if(userTotal == computerTotal){
+            showMessage("you and the computer had equal hands, the computer wins")
         }
-        if(userTotal > computerTotal){
-            removeActions()
-            displayMessage("you won, you got more than the computer")
-        }
+        console.log("got here")
+        showComputerCards()
     }
 }
 
-function help(){
-    instructions.removeClass("instructionsUp")
-    instructions.addClass("instructionsDown")
-    actions.css("display", "none")
-    resetGame() 
-}
-
-
-//loads when the page loads
+//shows instructions on load
 window.onload = () => {
     instructions.addClass("instructionsDown")
     actions.css("display", "none")
-}
+} 
