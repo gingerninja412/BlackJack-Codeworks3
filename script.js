@@ -410,6 +410,76 @@ function dealCard(hand){
     }
 }
 
+function calculateTotal(hand) {
+    let total = 0;
+    let aces = 0;
+    for(let i = 0; i < hand.length; i++){
+        if(hand[i].value == "ace"){
+            aces += 1
+        } else{
+            total += hand[i].value
+        }
+    }
+    if(aces != 0){
+        if(aces == 1){
+            if(total < 11){
+                total += 11
+            } else{
+                total++
+            }
+        } else if(aces > 1){
+            if(total < 11){
+                total = total + (aces - 1)
+            } else if(total >= 11){
+                total = total + aces
+            }
+        }
+    }
+    return total
+}
+
+
+function checkForBlackjack(){
+    let userTotal = calculateTotal(userHand)
+    let computerTotal = calculateTotal(computerHand)
+    if(userTotal == 21){
+        showMessage("You won with a blackjack")
+        removePlayButtons()
+        showMessage("press reset to play again")
+        showComputerCards()
+    } else if(userTotal > 21){
+        showMessage("you went bust")
+        removePlayButtons()
+        showMessage("press reset to play again")
+        showComputerCards()
+    } else if(computerTotal == 21){
+        showMessage("The computer won with a blackjack")
+        removePlayButtons()
+        showMessage("press reset to play again")
+        showComputerCards()
+    } else if(computerTotal > 21){
+        showMessage("the computer went bust, you win")
+        removePlayButtons()
+        showMessage("press reset to play again")
+        showComputerCards()
+    }
+    if(twoActivated){
+        userTotal = calculateTotal(userHandTwo)
+        if(userTotal == 21){
+            showMessage("You won with a blackjack")
+            removePlayButtons()
+            showMessage("press reset to play again")
+            showComputerCards()
+        } else if(userTotal > 21){
+            showMessage("you went bust")
+            removePlayButtons()
+            showMessage("press reset to play again")
+            showComputerCards()
+        }
+    }
+}
+
+
 //button functions
 
 function startGame(){
@@ -450,6 +520,23 @@ function split(){
         showMessage("you are now playing with your first hand")
     } else{
         showMessage("your cards are not the same")
+    }
+}
+
+function hit(){
+    if(twoActivated == true){
+        if(playedOne == false){
+            dealCard(userHand)
+            playedOne = true
+            showMessage("you have been dealt a card, you are now playing your second hand")
+        } else if(playedTwo = false){
+            dealCard(userHandTwo)
+            playedTwo = true
+            showMessage("you have played both your hands, it's the computers turn")
+        }
+    } else {
+        dealCard(userHand)
+        showMessage("you have been dealt a card, it is the computers turn")
     }
 }
 
