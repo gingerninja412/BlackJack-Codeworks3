@@ -73,6 +73,11 @@ button{
     height: 25%;
     width: 99.8%;
     text-align: center;
+    background-color: #a1dddd;
+    border: 2px solid #FF0000;
+    border-bottom: none;
+    border-right: none;
+    border-top-left-radius: 10px;
 }
 
 .message-board p {
