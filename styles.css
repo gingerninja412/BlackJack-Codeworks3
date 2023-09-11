@@ -60,7 +60,7 @@ button:hover{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image: url(/images/BlackJack-table.jpg);
+    background-image: url(/images/BlackJack-table.png);
     background-repeat: no-repeat;
     background-size: 100%;
 }
