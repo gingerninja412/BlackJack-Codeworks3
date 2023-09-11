@@ -1,369 +1,371 @@
 let userHand = []
-let uerHandTwo = []
+let playedOne = false
+let userHandTwo = []
+let twoActivated = false
+let playedTwo = false
 let computerHand = []
 let computerStand = false
-let option = ""
-let
+
 const deckOfCards = [
     {
-        name: "ace of spades",
+        name: "ace",
         value: "ace",
         picked: false,
         image: String.raw`images\Ace_of_Spades.png`,
         index: 0
     },
     {
-        name: "two of spades",
+        name: "two",
         value: 2,
         picked: false,
         image: String.raw`images\Two_of_Spades.png`,
         index: 1
     },
     {
-        name: "three of spades",
+        name: "three",
         value: 3,
         picked: false,
         image: String.raw`images\Three_of_Spades.png`,
         index: 2
     },
     {
-        name: "four of spades",
+        name: "four",
         value: 4,
         picked: false,
         image: String.raw`images\Four_of_spades.png`,
         index: 3
     },
     {
-        name: "five of spades",
+        name: "five",
         value: 5,
         picked: false,
         image: String.raw`images\Five_of_Spades.png`,
         index: 4
     },
     {
-        name: "six of spades",
+        name: "six",
         value: 6,
         picked: false,
         image: String.raw`images\Six_of_Spades.png`,
         index: 5
     },
     {
-        name: "seven of spades",
+        name: "seven",
         value: 7,
         picked: false,
         image: String.raw`images\Seven_of_Spades.png`,
         index: 6
     },
     {
-        name: "eight of spades",
+        name: "eight",
         value: 8,
         picked: false,
         image: String.raw`images\Eight_of_Spades.png`,
         index: 7
     },
     {
-        name: "nine of spades",
+        name: "nine",
         value: 9,
         picked: false,
         image: String.raw`images\Nine_of_Spades.png`,
         index: 8
     },
     {
-        name: "ten of spades",
+        name: "ten",
         value: 10,
         picked: false,
         image: String.raw`images\Ten_of_Spades.png`,
         index: 9
     },
     {
-        name: "jack of spades",
+        name: "jack",
         value: 10,
         picked: false,
         image: String.raw`images\Jack_of_Spades.png`,
         index: 10
     },
     {
-        name: "queen of spades",
+        name: "queen",
         value: 10,
         picked: false,
         image: String.raw`images\Queen_of_Spades.png`,
         index: 11
     },
     {
-        name: "king of spades",
+        name: "king",
         value: 10,
         picked: false,
         image: String.raw`images\King_of_Spades.png`,
         index: 12
     },
     {
-        name: "ace of clubs",
+        name: "ace",
         value: "ace",
         picked: false,
         image: String.raw`images\ace_of_clubs.PNG`,
         index: 13
     },
     {
-        name: "two of clubs",
+        name: "two",
         value: 2,
         picked: false,
         image: String.raw`images\Two_of_clubs.PNG`,
         index: 14
     },
     {
-        name: "three of clubs",
+        name: "three",
         value: 3,
         picked: false,
         image: String.raw`images\Three_of_clubs.PNG`,
         index: 15
     },
     {
-        name: "four of clubs",
+        name: "four",
         value: 4,
         picked: false,
         image: String.raw`images\Four_of_Clubs.PNG`,
         index: 16
     },
     {
-        name: "five of clubs",
+        name: "five",
         value: 5,
         picked: false,
         image: String.raw`images\Five_of_clubs.PNG`,
         index: 17
     },
     {
-        name: "six of clubs",
+        name: "six",
         value: 6,
         picked: false,
         image: String.raw`images\Six_of_clubs.PNG`,
         index: 18
     },
     {
-        name: "seven of clubs",
+        name: "seven",
         value: 7,
         picked: false,
         image: String.raw`images\Seven_of_clubs.PNG`,
         index: 19
     },
     {
-        name: "eight of clubs",
+        name: "eight",
         value: 8,
         picked: false,
         image: String.raw`images\Eight_of_clubs.PNG`,
         index: 20
     },
     {
-        name: "nine of clubs",
+        name: "nine",
         value: 9,
         picked: false,
         image: String.raw`images\Nine_of_clubs.PNG`,
         index: 21
     },
     {
-        name: "ten of clubs",
+        name: "ten",
         value: 10,
         picked: false,
         image: String.raw`images\Ten_of_clubs.PNG`,
         index: 22
     },
     {
-        name: "jack of clubs",
+        name: "jack",
         value: 10,
         picked: false,
         image: String.raw`images\Jack_of_clubs.PNG`,
         index: 23
     },
     {
-        name: "queen of clubs",
+        name: "queen",
         value: 10,
         picked: false,
         image: String.raw`images\Queen_of_clubs.PNG`,
         index: 24
     },
     {
-        name: "king of clubs",
+        name: "king",
         value: 10,
         picked: false,
         image: String.raw`images\King_of_clubs.PNG`,
         index: 25
     },
     {
-        name: "ace of hearts",
+        name: "ace",
         value: "ace",
         picked: false,
         image: String.raw`images\Ace_of_Hearts.png`,
         index: 26
     },
     {
-        name: "two of hearts",
+        name: "two",
         value: 2,
         picked: false,
         image: String.raw`images\Two_of_Hearts.png`,
         index: 27
     },
     {
-        name: "three of hearts",
+        name: "three",
         value: 3,
         picked: false,
         image: String.raw`images\Three_of_Hearts.png`,
         index: 28
     },
     {
-        name: "four of hearts",
+        name: "four",
         value: 4,
         picked: false,
         image: String.raw`images\Four_of_Hearts.png`,
         index: 29
     },
     {
-        name: "five of hearts",
+        name: "five",
         value: 5,
         picked: false,
         image: String.raw`images\Five_of_Hearts.png`,
         index: 30
     },
     {
-        name: "six of hearts",
+        name: "six",
         value: 6,
         picked: false,
         image: String.raw`images\Six_of_Hearts.png`,
         index: 31
     },
     {
-        name: "seven of hearts",
+        name: "seven",
         value: 7,
         picked: false,
         image: String.raw`images\seven_of_Hearts.png`,
         index: 32
     },
     {
-        name: "eight of hearts",
+        name: "eight",
         value: 8,
         picked: false,
         image: String.raw`images\Eight_of_Hearts.png`,
         index: 33
     },
     {
-        name: "nine of hearts",
+        name: "nine",
         value: 9,
         picked: false,
         image: String.raw`images\Nine_of_Hearts.png`,
         index: 34
     },
     {
-        name: "ten of hearts",
+        name: "ten",
         value: 10,
         picked: false,
         image: String.raw`images\Ten_of_Hearts.png`,
         index: 35
     },
     {
-        name: "jack of hearts",
+        name: "jack",
         value: 10,
         picked: false,
         image: String.raw`images\Jack_of_Hearts.png`,
         index: 36
     },
     {
-        name: "queen of hearts",
+        name: "queen",
         value: 10,
         picked: false,
         image: String.raw`images\Queen_of_Hearts.png`,
         index: 37
     },
     {
-        name: "king of hearts",
+        name: "king",
         value: 10,
         picked: false,
         image: String.raw`images\King_of_Hearts.png`,
         index: 38
     },
     {
-        name: "ace of diamonds",
+        name: "ace",
         value: "ace",
         picked: false,
         image: String.raw`images\Ace_of_diamonds.PNG`,
         index: 39
     },
     {
-        name: "two of diamonds",
+        name: "two",
         value: 2,
         picked: false,
         image: String.raw`images\Two_of_diamonds.PNG`,
         index: 40
     },
     {
-        name: "three of diamonds",
+        name: "three",
         value: 3,
         picked: false,
         image: String.raw`images\Three_of_diamonds.PNG`,
         index: 41
     },
     {
-        name: "four of diamonds",
+        name: "four",
         value: 4,
         picked: false,
         image: String.raw`images\Four_of_diamonds.PNG`,
         index: 42
     },
     {
-        name: "five of diamonds",
+        name: "five",
         value: 5,
         picked: false,
         image: String.raw`images\Five_of_diamonds.PNG`,
         index: 43
     },
     {
-        name: "six of diamonds",
+        name: "six",
         value: 6,
         picked: false,
         image: String.raw`images\Six_of_diamonds.PNG`,
         index: 44
     },
     {
-        name: "seven of diamonds",
+        name: "seven",
         value: 7,
         picked: false,
         image: String.raw`images\seven_of_diamonds.PNG`,
         index: 45
     },
     {
-        name: "eight of diamonds",
+        name: "eight",
         value: 8,
         picked: false,
         image: String.raw`images\Eight_of_diamonds.png`,
         index: 46
     },
     {
-        name: "nine of diamonds",
+        name: "nine",
         value: 9,
         picked: false,
         image: String.raw`images\Nine_of_Diamonds.png`,
         index: 47
     },
     {
-        name: "ten of diamonds",
+        name: "ten",
         value: 10,
         picked: false,
         image: String.raw`images\Ten_of_Diamonds.png`,
         index: 48
     },
     {
-        name: "jack of diamonds",
+        name: "jack",
         value: 10,
         picked: false,
         image: String.raw`images\Jack_of_DIamonds.png`,
         index: 49 
     },
     {
-        name: "queen of diamonds",
+        name: "queen",
         value: 10,
         picked: false,
         image: String.raw`images\Queen_of_Diamonds.png`,
         index: 50
     },
     {
-        name: "king of diamonds",
+        name: "king",
         value: 10,
         picked: false,
         image: String.raw`images\King_of_Diamonds.png`,
@@ -383,178 +385,69 @@ const table = $(".table")
 
 //processing functions
 
-function showComputerCards() {
-    computerArea.empty()
-    computerHand.forEach( item => {
-        let newCard = $("<img>")
-        newCard.attr("src", item.image)
-        computerArea.append(newCard)
-    })
-}
-
-function resetGame(){
-    userHand.forEach(item => {
-        deckOfCards[item.index].picked = false
-    })
-    computerHand.forEach(item =>{
-        deckOfCards[item.index].picked = false
-    })
-    userHand = []
-    computerHand = []
-    messageArea.empty()
-    computerArea.empty()
-    playerHand.empty()
-    gameOver = false
-    computerStand = false
-    actions.css("display", "flex")
-    for(let i = 0; i < 2; i++){
-        dealCard(userHand)
-        dealCard(computerHand)
-    }
-    checkForBlackjack()
-    if(gameOver == false){
-        showMessage("you have been dealt two cards choose an option on the left")
-    }
-}
-
-function removePlayButtons(){
-    actions.css("display", "none")
-    resetButton.css("display", "flex")
-}
-
 function showMessage(message){
     let newMessage = $("<p></p>")
-    if(messageArea.children() > 4){
-        messageArea.first().remove()
-    }
     newMessage.text(message)
     messageArea.append(newMessage)
 }
 
-function displayPlayerCard(card){
-    let newCard = $("<img>")
-    newCard.attr("src", card.image)
-    playerHand.append(newCard)
-}
-
-function displayComputerHand(){
-    let newCard = $("<img>")
-    newCard.attr("src", String.raw`images\playing_card_back.png`)
-    computerArea.append(newCard)
-}
-
-function dealCard (player){
-    let card = Math.floor((Math.random() * 52))
-    while (deckOfCards[card].picked == true){
-        card = Math.floor((Math.random() * 52))
+function dealCard(hand){
+    let card = Math.floor(Math.random() * 52)
+    while(deckOfCards[card].picked == true){
+        card = Math.floor(Math.random() * 52)
     }
-    player.push(deckOfCards[card])
+    hand.push(deckOfCards[card])
     deckOfCards[card].picked = true
-    if(player == userHand){
-        displayPlayerCard(deckOfCards[card])
-    } else if(player == computerHand){
-        displayComputerHand()
+    let displayCard = $("<img>")
+    displayCard.attr("src", deckOfCards[card].image)
+    if(hand == userHand){
+        playerHand.append(displayCard)
+    } else if(hand == userHandTwo){
+        playerHandTwo.append(displayCard)
+    } else if(hand == computerHand){
+        displayCard.attr("src", String.raw`images\playing_card_back.png`)
+        computerArea.append(displayCard)
     }
 }
 
-function calculateTotal(hand) {
-    let total = 0;
-    let aces = 0;
-    for(let i = 0; i < hand.length; i++){
-        if(hand[i].value == "ace"){
-            aces += 1
-        } else{
-            total += hand[i].value
-        }
-    }
-    if(aces != 0){
-        if(aces == 1){
-            if(total < 11){
-                total += 11
-            } else{
-                total++
-            }
-        } else if(aces > 1){
-            if(total < 11){
-                total = total + (aces - 1)
-            } else if(total >= 11){
-                total = total + aces
-            }
-        }
-    }
-    return total
-}
-
-
-function checkForBlackjack(){
-    let userTotal = calculateTotal(userHand)
-    let computerTotal = calculateTotal(computerHand)
-    if(userTotal == 21){
-        gameOver = true
-        showMessage("You won with a blackjack")
-        removePlayButtons()
-        showMessage("press reset to play again")
-        showComputerCards()
-    } else if(userTotal > 21){
-        gameOver = true
-        showMessage("you went bust")
-        removePlayButtons()
-        showMessage("press reset to play again")
-        showComputerCards()
-    } else if(computerTotal == 21){
-        gameOver = true
-        showMessage("The computer won with a blackjack")
-        removePlayButtons()
-        showMessage("press reset to play again")
-        showComputerCards()
-    } else if(computerTotal > 21){
-        showMessage("the computer went bust, you win")
-        removePlayButtons()
-        gameOver = true
-        showMessage("press reset to play again")
-        showComputerCards()
-    }
-}
-
-function computerTurn(){
-    if(computerStand == false){
-        if(calculateTotal(computerHand) < 16){
-            dealCard(computerHand)
-            showMessage("the computer hit")
-        } else{
-            computerStand = true
-            showMessage("the computer is standing")
-        }
-    }
-}
-
-//functions tied to buttons
-function help(){
-    instructions.removeClass("instructionsUp")
-    instructions.addClass("instructionsDown")
-    actions.css("display", "none")
-}
+//button functions
 
 function startGame(){
     instructions.removeClass("instructionsDown")
     instructions.addClass("instructionsUp")
     actions.css("display", "flex")
-    resetGame()
-}
-
-function hit(){
-}
-
-function stand(){
-   
+    for(let i = 0; i < 2; i++){
+        dealCard(userHand)
+        dealCard(computerHand)
+    }
+    showMessage("you have been dealt two cards")
 }
 
 function split(){
-
-}
-
-function confirm(){
-    
+    if(userHand.length > 2){
+        showMessage("you have more than two cards you can't split")
+        return
+    }
+    if(twoActivated == true){
+        showMessage("you already have a second hand")
+        return
+    }
+    if(userHand[0].name == userHand[1].name){
+        twoActivated = true
+        playerHand.empty()
+        let movedCard = userHand.pop()
+        userHandTwo.push(movedCard)
+        let newImage = $("<img>")
+        newImage.attr("src", movedCard.image)
+        playerHandTwo.append(newImage)
+        let reDisplay = $("<img>")
+        reDisplay.attr("src", userHand[0].image)
+        playerHand.append(reDisplay)
+        dealCard(userHandTwo)
+        dealCard(userHand)
+    } else{
+        showMessage("your cards are not the same")
+    }
 }
 
 //shows instructions on load
