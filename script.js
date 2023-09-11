@@ -1,7 +1,9 @@
 let userHand = []
+let uerHandTwo = []
 let computerHand = []
 let computerStand = false
-let gameOver = false
+let option = ""
+let
 const deckOfCards = [
     {
         name: "ace of spades",
@@ -374,6 +376,7 @@ const instructions = $(".instructions");
 const actions = $(".action");
 const computerArea = $("#computerHand");
 const playerHand = $("#playerHand");
+const playerHandTwo = $("#playerHandTwo")
 const messageArea = $(".message-board");
 const resetButton = $("#Reset")
 const table = $(".table")
@@ -540,30 +543,18 @@ function startGame(){
 }
 
 function hit(){
-    dealCard(userHand)
-    computerTurn()
-    checkForBlackjack()
 }
 
 function stand(){
-    while(computerStand == false && gameOver == false){
-        computerTurn()
-        checkForBlackjack()
-    }
-    if(gameOver == false){
-        let computerTotal = calculateTotal(computerHand)
-        let userTotal = calculateTotal(userHand)
-        removePlayButtons()
-        if(computerTotal > userTotal){
-            showMessage("you lost, the computer got a better hand")
-        } else if(userTotal > computerTotal){
-            showMessage("you won, your hand was better than the computer")
-        } else if(userTotal == computerTotal){
-            showMessage("you and the computer had equal hands, the computer wins")
-        }
-        console.log("got here")
-        showComputerCards()
-    }
+   
+}
+
+function split(){
+
+}
+
+function confirm(){
+    
 }
 
 //shows instructions on load
