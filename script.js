@@ -445,6 +445,9 @@ function split(){
         playerHand.append(reDisplay)
         dealCard(userHandTwo)
         dealCard(userHand)
+        showMessage("your hand has been split into two hands")
+        showMessage("You can now play each hand separately")
+        showMessage("you are now playing with your first hand")
     } else{
         showMessage("your cards are not the same")
     }
