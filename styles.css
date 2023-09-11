@@ -89,7 +89,7 @@ button{
 
 .instructions{
     position: absolute;
-    left:50%;
+    left:40%;
     top: -50vh;
     background-color: #a1dddd;
     width:400px;
@@ -123,13 +123,13 @@ button{
     }
 
     100%{
-        top: 50vh;
+        top: 33vh;
     }
 }
 
 @keyframes up {
     0%{
-        top: 50vh;
+        top: 33vh;
     }
     100% {
         top: -50vh;

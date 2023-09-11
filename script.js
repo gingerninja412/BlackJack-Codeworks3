@@ -539,14 +539,7 @@ function startGame(){
     instructions.removeClass("instructionsDown")
     instructions.addClass("instructionsUp")
     actions.css("display", "flex")
-    for(let i = 0; i < 2; i++){
-        dealCard(userHand)
-        dealCard(computerHand)
-    }
-    checkForBlackjack()
-    if(gameOver == false){
-        showMessage("you have been dealt two cards choose an option on the left")
-    }
+    resetGame()
 }
 
 function hit(){
