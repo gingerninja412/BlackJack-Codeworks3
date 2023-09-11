@@ -5,9 +5,6 @@
 
 body{
     box-sizing: border-box;
-    background-image: url(/images/BlackJack-table.jpg);
-    background-repeat: no-repeat;
-    background-size: 100%;
 }
 
 main{
@@ -23,6 +20,8 @@ main{
     flex-direction: column;
     align-items: center;
     gap: 13%;
+    background-color: #a1dddd;
+    border-right: 2px solid red;
 }
 
 .action{
@@ -44,6 +43,10 @@ button{
     border-radius: 20px;
 }
 
+button:hover{
+    background-color: red;
+}
+
 .gameplay-area{
     height: 99vh;
     width: 80vw;
@@ -57,6 +60,9 @@ button{
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-image: url(/images/BlackJack-table.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
 }
 
 .hand{
