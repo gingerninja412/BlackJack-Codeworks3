@@ -62,11 +62,14 @@ button{
 .hand{
     width: 1000px;
     height: 200px;
-    border: 2px solid blue;
     margin-top: 10px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
+}
+
+.gameplay-area h3{
+    color: white;
 }
 
 .message-board{
