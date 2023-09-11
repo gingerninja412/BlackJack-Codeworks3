@@ -385,7 +385,6 @@ function showComputerCards() {
     computerHand.forEach( item => {
         let newCard = $("<img>")
         newCard.attr("src", item.image)
-        newCard.addClass("card")
         computerArea.append(newCard)
     })
 }
@@ -432,14 +431,12 @@ function showMessage(message){
 function displayPlayerCard(card){
     let newCard = $("<img>")
     newCard.attr("src", card.image)
-    newCard.addClass("card")
     playerHand.append(newCard)
 }
 
 function displayComputerHand(){
     let newCard = $("<img>")
     newCard.attr("src", String.raw`images\playing_card_back.png`)
-    newCard.addClass("card")
     computerArea.append(newCard)
 }
 
