@@ -376,7 +376,7 @@ const computerArea = $("#computerHand");
 const playerHand = $("#playerHand");
 const messageArea = $(".message-board");
 const resetButton = $("#Reset")
-
+const table = $(".table")
 
 //processing functions
 
@@ -421,7 +421,7 @@ function removePlayButtons(){
 
 function showMessage(message){
     let newMessage = $("<p></p>")
-    if(messageArea.children() > 5){
+    if(messageArea.children() > 4){
         messageArea.first().remove()
     }
     newMessage.text(message)

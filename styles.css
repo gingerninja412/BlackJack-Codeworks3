@@ -5,6 +5,9 @@
 
 body{
     box-sizing: border-box;
+    background-image: url(/images/BlackJack-table.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
 }
 
 main{
@@ -16,7 +19,6 @@ main{
 .options{
     height: 99vh;
     width: 20vw;
-    border: 2px solid red;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -28,6 +30,7 @@ main{
     flex-direction: column;
     align-items: center;
     font-size: larger;
+    font-weight: bold;
 }
 
 .help{
@@ -42,26 +45,16 @@ button{
 .gameplay-area{
     height: 99vh;
     width: 80vw;
-    border: 2px solid red;
     display: flex;
     flex-direction: column;
 }
 
 .table{
-    height: 80%;
+    height: 75%;
     width: 99.8%;
-    border: 2px solid greenyellow;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.deck{
-    width: 150px;
-    height: 250px;
-    border: 2px solid blue;
-    align-self: self-end;
-    margin-right: 30px;
 }
 
 .hand{
@@ -75,15 +68,15 @@ button{
 }
 
 .message-board{
-    height: 20%;
+    height: 25%;
     width: 99.8%;
-    border: 2px solid blue;
     text-align: center;
 }
 
 .message-board p {
     font-size: xx-large;
-    font-weight: bold
+    font-weight: bold;
+    margin-top: 5px;
 }
 
 .hand img{
