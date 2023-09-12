@@ -20,8 +20,14 @@ main{
     flex-direction: column;
     align-items: center;
     gap: 13%;
-    background-color: #a1dddd;
+    background-color: darkgreen;
     border-right: 2px solid red;
+}
+
+.options button{
+    border: 2px solid red;
+    background-color: black;
+    color: white;
 }
 
 .action{
@@ -54,6 +60,10 @@ button:hover{
     flex-direction: column;
 }
 
+.gameplay-area h3{
+    color: white;
+}
+
 .table{
     height: 75%;
     width: 99.8%;
@@ -80,15 +90,11 @@ button:hover{
     border: 2px solid black;
 }
 
-.gameplay-area h3{
-    color: white;
-}
-
 .message-board{
     height: 25%;
     width: 99.8%;
     text-align: center;
-    background-color: #a1dddd;
+    background-color: darkgreen;
     border: 2px solid #FF0000;
     border-bottom: none;
     border-right: none;
@@ -99,9 +105,8 @@ button:hover{
     font-size: xx-large;
     font-weight: bold;
     margin-top: 5px;
+    color: white;
 }
-
-
 
 .instructions{
     position: absolute;

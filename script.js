@@ -2,6 +2,7 @@ let userHand = []
 let computerHand = []
 let computerStand = false
 let gameOver = false
+//FIXME: change the source of the images 
 const deckOfCards = [
     {
         name: "ace of spades",
@@ -369,6 +370,7 @@ const deckOfCards = [
     },
 ]
 
+//TODO: change the styling
 //screen objects
 const instructions = $(".instructions");
 const actions = $(".action");
@@ -378,9 +380,14 @@ const messageArea = $(".message-board");
 const resetButton = $("#Reset")
 const table = $(".table")
 
+//audio resources
+const shuffleSound = $("#cardShuffle")
+const shuffleSoundTwo = $("#cardShuffleTwo")
+const dealCardSound = $("#dealCards")
+const winSound = $("#winSound")
+const loseSound = $("#loseSound")
 
 //processing functions
-
 function showComputerCards() {
     computerArea.empty()
     computerHand.forEach( item => {
@@ -493,24 +500,28 @@ function checkForBlackjack(){
         removePlayButtons()
         showMessage("press reset to play again")
         showComputerCards()
+        winSound[0].play()
     } else if(userTotal > 21){
         gameOver = true
         showMessage("you went bust")
         removePlayButtons()
         showMessage("press reset to play again")
         showComputerCards()
+        loseSound[0].play()
     } else if(computerTotal == 21){
         gameOver = true
         showMessage("The computer won with a blackjack")
         removePlayButtons()
         showMessage("press reset to play again")
         showComputerCards()
+        loseSound[0].play()
     } else if(computerTotal > 21){
         showMessage("the computer went bust, you win")
         removePlayButtons()
         gameOver = true
         showMessage("press reset to play again")
         showComputerCards()
+        winSound[0].play()
     }
 }
 
@@ -537,6 +548,7 @@ function startGame(){
     instructions.removeClass("instructionsDown")
     instructions.addClass("instructionsUp")
     actions.css("display", "flex")
+    shuffleSound[0].play()
     resetGame()
 }
 
@@ -544,6 +556,7 @@ function hit(){
     dealCard(userHand)
     computerTurn()
     checkForBlackjack()
+    dealCardSound[0].play()
 }
 
 function stand(){
@@ -557,10 +570,13 @@ function stand(){
         removePlayButtons()
         if(computerTotal > userTotal){
             showMessage("you lost, the computer got a better hand")
+            loseSound[0].play()
         } else if(userTotal > computerTotal){
             showMessage("you won, your hand was better than the computer")
+            winSound[0].play()
         } else if(userTotal == computerTotal){
             showMessage("you and the computer had equal hands, the computer wins")
+            loseSound[0].play()
         }
         console.log("got here")
         showComputerCards()
