@@ -67,11 +67,17 @@ button:hover{
 
 .hand{
     width: 1000px;
-    height: 200px;
+    height: 300px;
     margin-top: 10px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
+}
+
+.hand img{
+    height: 200px;
+    width: 150px;
+    border: 2px solid black;
 }
 
 .gameplay-area h3{
@@ -95,11 +101,7 @@ button:hover{
     margin-top: 5px;
 }
 
-.hand img{
-    height: 150px;
-    width: 100px;
-    border: 2px solid black;
-}
+
 
 .instructions{
     position: absolute;
