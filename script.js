@@ -378,6 +378,7 @@ const messageArea = $(".message-board");
 const resetButton = $("#Reset")
 const table = $(".table")
 
+
 //processing functions
 
 function showComputerCards() {
