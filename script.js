@@ -515,6 +515,7 @@ function checkForBlackjack(){
         showMessage("press reset to play again")
         showComputerCards()
         winSound[0].play()
+        updateScoreboard("player")
     } else if(userTotal > 21){
         gameOver = true
         showMessage("you went bust")
@@ -522,6 +523,7 @@ function checkForBlackjack(){
         showMessage("press reset to play again")
         showComputerCards()
         loseSound[0].play()
+        updateScoreboard("computer")
     } else if(computerTotal == 21){
         gameOver = true
         showMessage("The computer won with a blackjack")
@@ -529,6 +531,7 @@ function checkForBlackjack(){
         showMessage("press reset to play again")
         showComputerCards()
         loseSound[0].play()
+        updateScoreboard("computer")
     } else if(computerTotal > 21){
         showMessage("the computer went bust, you win")
         removePlayButtons()
@@ -536,6 +539,7 @@ function checkForBlackjack(){
         showMessage("press reset to play again")
         showComputerCards()
         winSound[0].play()
+        updateScoreboard("player")
     }
 }
 
@@ -585,12 +589,15 @@ function stand(){
         if(computerTotal > userTotal){
             showMessage("you lost, the computer got a better hand")
             loseSound[0].play()
+            updateScoreboard("computer")
         } else if(userTotal > computerTotal){
             showMessage("you won, your hand was better than the computer")
             winSound[0].play()
+            updateScoreboard("player")
         } else if(userTotal == computerTotal){
             showMessage("you and the computer had equal hands, the computer wins")
             loseSound[0].play()
+            updateScoreboard("computer")
         }
         console.log("got here")
         showComputerCards()
