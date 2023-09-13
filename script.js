@@ -2,7 +2,7 @@ let userHand = []
 let computerHand = []
 let computerStand = false
 let gameOver = false
-//FIXME: change the source of the images 
+//All cards have been designed by Mark Velasquez
 const deckOfCards = [
     {
         name: "ace of spades",
