@@ -69,10 +69,14 @@ button:hover{
     width: 99.8%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     background-image: url(/images/BlackJack-table.png);
     background-repeat: no-repeat;
     background-size: 100%;
+}
+
+.table div{
+    margin-left: 60px;
 }
 
 .hand{
@@ -136,6 +140,25 @@ button:hover{
     animation-name: down;
     animation-duration: 3s;
     animation-fill-mode: forwards;
+}
+
+.scoreboard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: black;
+    color: white;
+    gap: 10px;
+    padding: 20px;
+    border: 2px solid red;
+    border-radius: 20px;
+}
+
+.scoreboard p{
+    font-size: larger;
+    padding: 5px;
+    border: 0.5px solid red;
+    border-radius: 7px;
 }
 
 @keyframes down {

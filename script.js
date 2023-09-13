@@ -2,6 +2,8 @@ let userHand = []
 let computerHand = []
 let computerStand = false
 let gameOver = false
+let playerWins = 0
+let computerWins = 0
 //All cards have been designed by Mark Velasquez
 const deckOfCards = [
     {
@@ -379,6 +381,8 @@ const playerHand = $("#playerHand");
 const messageArea = $(".message-board");
 const resetButton = $("#Reset")
 const table = $(".table")
+const playerScore = $("#playerScore")
+const computerScore = $("#computerScore")
 
 //audio resources
 const shuffleSound = $("#cardShuffle")
@@ -388,6 +392,16 @@ const winSound = $("#winSound")
 const loseSound = $("#loseSound")
 
 //processing functions
+function updateScoreboard(winner){
+    if(winner == "computer"){
+        computerWins++
+        computerScore.text(`computer: ${computerWins}`)
+    } else if(winner == "player"){
+        playerWins++
+        playerScore.text(`Player: ${playerWins}`)
+    }
+}
+
 function showComputerCards() {
     computerArea.empty()
     computerHand.forEach( item => {
