@@ -72,7 +72,7 @@ button:hover{
     align-items: flex-start;
     background-image: url(/images/BlackJack-table.png);
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: cover;
 }
 
 .table div{
